@@ -5,8 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App </title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="wrapApp">
+      <main>
+        <section class="location">
+            <div class="city">Egypt, US</div>
+            <div class="date">Monday 10 June 2021</div>
+        </section>
+        <div class="main-temp"> 
+            <div class="temp">21<span>°C</span></div>  
+            <div class="weather">Fog</div>     
+            <div class="hi-low">19°C / 24°C</div> 
+        </div>
+      </main>
+      <header>
+          <input type="text" autocomplete="off" class="search-box" placeholder="Search...">
+      </header>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
