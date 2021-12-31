@@ -9,7 +9,7 @@ searchBox.addEventListener("keypress", setQuery);
 function setQuery(e) {
     if (e.keyCode === 13) {
       getResults(searchBox.value);
-      console.log(searchBox.value);
+      searchBox.value = "";
     }
 }
 
@@ -23,15 +23,25 @@ function getResults(query) {
 
 function displayResults(weather) {
     console.log(weather);
-    let city = document.querySelector('.city')
+    let city = document.querySelector('.location .city')
     city.innerHTML = `${weather.name}, ${weather.sys.country}`;
     let now = new Date();
-    let date = document.querySelector('.date');
-    date.innerHTML = dateBuilder(now)
+
+    let date = document.querySelector('.location .date');
+    date.innerHTML = dateBuilder(now);
+
+    let temp =  document.querySelector('.temp');
+    temp.innerHTML = `${Math.round(weather.main.temp)}<span>°C</span>`;
+  
+    let weatherEl = document.querySelector('.weather');
+    weatherEl.innerHTML = `${weather.weather[0].main}`;
+
+    let hilow = document.querySelector('.hi-low')
+    hilow.innerHTML = `${weather.main.temp_min}°C / ${weather.main.temp_max}°C`
 }
 
-function dateBuilder(a) {
- let month = [
+function dateBuilder(s) {
+ let months = [
     'January',
     'February',
     'March',
@@ -55,10 +65,10 @@ function dateBuilder(a) {
       'Saturday'
   ];    
 
-  let day = days[a.getday()]
-  let date = a.getDate();
-  let month = months[a.getMonth()]
-  let year = a.getFullYear();
+  let day = days[s.getDay()]
+  let date = s.getDate();
+  let month = months[s.getMonth()]
+  let year = s.getFullYear();
 
   return `${day} ${date} ${month} ${year}`;
 
